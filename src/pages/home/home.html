@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Receipt List
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="doScan()">
+        <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let receipt of receipts">
+      <ion-avatar item-start>
+       7/3
+      </ion-avatar>
+      <h2>{{ receipt.invoiceNumber }}</h2>
+      <h3>{{ receipt.invoiceDate }}</h3>
+      <h2 item-end>
+        {{ receipt.totalAmount }} 元
+      </h2>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
