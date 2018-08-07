@@ -30,7 +30,7 @@ export class HomePage {
         if (this.parser.needScanRight(text)) {
           this.alert.confirm('請掃右側QRcode', '', '確定', '取消', () => {
             this.scanRight(this.parser.amountNotScaned(text), textRight => {
-              text = text += textRight;
+              text = text += textRight.substring(2);
               this.receipts.push(this.parser.receipt(text));
               console.log(this.parser.receipt(text));
             })
