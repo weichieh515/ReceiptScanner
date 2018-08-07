@@ -18,10 +18,10 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item *ngFor="let receipt of receipts">
+  <ion-list *ngIf="receipts">
+    <ion-item *ngFor="let receipt of receipts" (click)="viewReceipt(receipt)">
       <ion-avatar item-start>
-       7/3
+        7/3
       </ion-avatar>
       <h2>{{ receipt.invoiceNumber }}</h2>
       <h3>{{ receipt.invoiceDate }}</h3>

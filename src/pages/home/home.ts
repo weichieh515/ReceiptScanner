@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 //Provider
 import { ScannerProvider } from '../../providers/scanner/scanner';
 import { ParserProvider } from '../../providers/parser/parser';
 import { AlertProvider } from '../../providers/alert/alert';
 //Interface
 import { Receipt } from '../../interface/receipt';
+//Component 
+import { ReceiptComponent } from '../../components/receipt/receipt';
 
 @Component({
   selector: 'page-home',
@@ -16,12 +18,13 @@ export class HomePage {
   receipts = <Receipt[]>[]
   constructor(
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     private scanner: ScannerProvider,
     private parser: ParserProvider,
     private alert: AlertProvider
   ) { }
 
-  doScan() {
+  private doScan() {
     this.scanner.fakeScan(text => {
       if (this.parser.validate(text)) {
         if (this.parser.needScanRight(text)) {
@@ -43,12 +46,16 @@ export class HomePage {
     });
   }
 
-  scanRight(amountNotScaned: number, callback) {
+  private scanRight(amountNotScaned: number, callback) {
     this.scanner.fakeScanRight(text => {
       if (this.parser.validateRight(text, amountNotScaned)) return callback(text);
       this.alert.confirm('請掃右側QRcode', '', '確定', '取消', () => this.scanRight(amountNotScaned, callback))
     })
   }
 
+  private viewReceipt(receipt) {
+    const modal = this.modalCtrl.create(ReceiptComponent, { receipt: receipt });
+    modal.present();
+  }
 
 }

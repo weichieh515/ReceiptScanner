@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      電子發票
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">返回</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row justify-content-center>
+    <ion-col col-10 text-center>
+      <h1>{{ receipt.invoiceNumber }}</h1>
+      <h3>{{ receipt.invoiceDate }}</h3>
+    </ion-col>
+    <ion-col col-11>
+      <ion-row>
+        <ion-col col-8>
+          <h6> 品名 X 數量</h6>
+        </ion-col>
+        <ion-col col-4>
+          <h6 text-end> 金額 </h6>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col col-12 >
+    <hr>
+      <ion-list no-lines>
+        <ion-item *ngFor="let product of receipt.products">
+          <h2>{{ product.name }}</h2>
+          <p> x {{ product.quantity }}</p>
+          <h2 item-end>
+              {{ product.amount }} 元
+            </h2>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+
+
+</ion-content>

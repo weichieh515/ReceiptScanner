@@ -5,7 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+//Page
 import { HomePage } from '../pages/home/home';
+//Component
+import { ReceiptComponent } from '../components/receipt/receipt';
 
 //Plugin
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -16,7 +19,8 @@ import { AlertProvider } from '../providers/alert/alert';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ReceiptComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,8 @@ import { AlertProvider } from '../providers/alert/alert';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ReceiptComponent
   ],
   providers: [
     BarcodeScanner,
