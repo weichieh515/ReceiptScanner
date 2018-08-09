@@ -4,6 +4,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { ScannerProvider } from '../../providers/scanner/scanner';
 import { ParserProvider } from '../../providers/parser/parser';
 import { AlertProvider } from '../../providers/alert/alert';
+import { ApiProvider } from '../../providers/api/api';
 //Interface
 import { Receipt } from '../../interface/receipt';
 //Component 
@@ -21,7 +22,8 @@ export class HomePage {
     public modalCtrl: ModalController,
     private scanner: ScannerProvider,
     private parser: ParserProvider,
-    private alert: AlertProvider
+    private alert: AlertProvider,
+    private api: ApiProvider
   ) { }
 
   private doScan() {
@@ -51,6 +53,15 @@ export class HomePage {
       if (this.parser.validateRight(text, amountNotScaned)) return callback(text);
       this.alert.confirm('請掃右側QRcode', '', '確定', '取消', () => this.scanRight(amountNotScaned, callback))
     })
+  }
+
+  private addReceipt(receipt: Receipt): void {
+    this.api.addReceipt(receipt)
+      .subscribe(res => {
+
+      }, err => {
+        this.alert.basic('HTTP Error', '確認', err.message);
+      });
   }
 
   private viewReceipt(receipt) {
