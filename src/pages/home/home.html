@@ -1,11 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+   
     <ion-title>
       Receipt List
     </ion-title>
+
+    <ion-buttons start>
+      <button ion-button icon-only >
+        <ion-icon name="ios-cloud"></ion-icon>
+      </button>
+    </ion-buttons>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="doScan()">
@@ -20,9 +24,7 @@
 
   <ion-list *ngIf="receipts">
     <ion-item *ngFor="let receipt of receipts" (click)="viewReceipt(receipt)">
-      <ion-avatar item-start>
-        7/3
-      </ion-avatar>
+      <ion-icon name='checkmark' color="secondary" item-start></ion-icon>
       <h2>{{ receipt.invoiceNumber }}</h2>
       <h3>{{ receipt.invoiceDate }}</h3>
       <h2 item-end>
